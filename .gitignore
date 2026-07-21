@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ruff_cache/
+.pytest_cache/
+data/policyengine_datasets/
+dashboard/node_modules/
+dashboard/.next/
+dashboard/.vercel/
+.DS_Store

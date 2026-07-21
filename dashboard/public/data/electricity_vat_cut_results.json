@@ -1,0 +1,763 @@
+{
+  "metadata": {
+    "generated": "2026-07-21",
+    "policyengine_version": "4.20.0",
+    "policyengine_uk_version": "2.89.2",
+    "dataset": "hf://policyengine/policyengine-uk-data/enhanced_frs_2024_25.h5",
+    "year": 2026,
+    "winter_share": 0.575
+  },
+  "reform_definition": {
+    "old_vat_rate": {
+      "value": 0.05,
+      "description": "Current VAT reduced rate on domestic fuel and power, in force since 1997.",
+      "url": "https://www.gov.uk/tax-on-shopping/energy-products"
+    },
+    "new_vat_rate": {
+      "value": 0.0,
+      "description": "Announced VAT rate on domestic electricity during the relief window.",
+      "url": "https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living"
+    },
+    "start": {
+      "value": "2026-10-01",
+      "description": "Start of the temporary zero rate on domestic electricity.",
+      "url": "https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living"
+    },
+    "end": {
+      "value": "2027-03-31",
+      "description": "End of the temporary zero rate on domestic electricity (six months).",
+      "url": "https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living"
+    },
+    "window_years": 0.5,
+    "announcement_url": "https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living"
+  },
+  "government_claims": {
+    "cost_2026_27_m": {
+      "value": 850,
+      "description": "Government's claimed Exchequer cost of the six-month electricity VAT cut in 2026-27, \u00a3m. Covers households plus non-VAT-registered small businesses on domestic relief, charities and care homes (this model covers households only), and is not OBR-certified \u2014 the OBR forecast comes at the Budget.",
+      "url": "https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living"
+    },
+    "price_cap_saving_annual": {
+      "value": 45,
+      "description": "Government's claimed reduction in the annual price cap for a typical household, \u00a3/year. Annualised: the realised gain over the six-month window is roughly half (~\u00a322-23).",
+      "url": "https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living"
+    },
+    "inflation": {
+      "value": {
+        "cpi_pp": -0.1,
+        "rpi_pp": -0.14
+      },
+      "description": "Government's claimed impact on CPI and RPI inflation, percentage points.",
+      "url": "https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living"
+    }
+  },
+  "assumptions": {
+    "winter_share": {
+      "value": 0.575,
+      "description": "Share of annual household electricity spending falling in October-March, used for the winter-weighted six-month sensitivity. Domestic electricity demand is seasonal but far less so than gas; BEIS/NEED and Elexon load profiles put the winter-half share of domestic electricity consumption at roughly 55-60%. The uniform variant uses 0.5.",
+      "url": "https://www.gov.uk/government/collections/national-energy-efficiency-data-need-framework"
+    },
+    "pass_through_scenarios": [
+      {
+        "value": 1.0,
+        "description": "Central case: full pass-through of the VAT cut to household bills. Domestic energy VAT is charged on the retail bill and most tariffs sit at the Ofgem price cap, which is set net of VAT, so the statutory incidence passes through mechanically.",
+        "url": "https://www.ofgem.gov.uk/energy-price-cap"
+      },
+      {
+        "value": 0.75,
+        "description": "Sensitivity: partial pass-through, if suppliers or the price-cap mechanics absorb a quarter of the cut (e.g. through tariff resets timed against the window).",
+        "url": "https://uk.finance.yahoo.com/news/energy-vat-cut-does-not-075635288.html"
+      },
+      {
+        "value": 0.5,
+        "description": "Sensitivity: half pass-through, a lower bound in the consumption-tax incidence literature for temporary cuts.",
+        "url": "https://uk.finance.yahoo.com/news/energy-vat-cut-does-not-075635288.html"
+      }
+    ]
+  },
+  "external_estimates": {
+    "government_cost_2026_27": {
+      "value": 850,
+      "description": "Government claim: Exchequer cost of the six-month electricity VAT cut in 2026-27, \u00a3m (electricity only, 6-month window; includes some non-household domestic-relief users; not OBR-certified).",
+      "url": "https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living"
+    },
+    "government_price_cap_saving": {
+      "value": 45,
+      "description": "Government claim: reduction in the annual price cap for a typical household, \u00a3/year (annualised; realised over the 6-month window ~\u00a322-23). Confirmed informally by the IFS (Ben Zaranko) and by Cornwall Insight.",
+      "url": "https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living"
+    },
+    "ofgem_price_cap_jul_sep_2026": {
+      "value": 1862,
+      "description": "Ofgem price cap, July-September 2026: \u00a31,862/year for a typical dual-fuel household (old typical-consumption basis; \u00a31,654 on the new basis). Gas + electricity combined.",
+      "url": "https://www.ofgem.gov.uk/energy-price-cap"
+    },
+    "cornwall_insight_oct_2026": {
+      "value": 1849,
+      "description": "Cornwall Insight forecast of the October 2026 price cap, \u00a31,849/year (old basis), confirming ~\u00a345 off the typical electricity bill from the VAT cut. Gas + electricity combined.",
+      "url": "https://www.cornwall-insight.com/press-and-media/press-release/bills-remain-stable-but-new-forecast-signals-increases-in-april/"
+    },
+    "mse_cap_rise": {
+      "value": 0.031,
+      "description": "MoneySavingExpert: the October 2026 cap was predicted to rise ~3.1%, largely absorbing the six-month gain in cash terms.",
+      "url": "https://uk.finance.yahoo.com/news/energy-vat-cut-does-not-075635288.html"
+    },
+    "hmrc_2022_full_removal": {
+      "value": 1700,
+      "description": "HMRC (via 2022 Commons debates): ~\u00a31.7bn/year to remove the 5% VAT on domestic fuel. NOT directly comparable: gas + electricity combined, full year, 2022 prices.",
+      "url": "https://commonslibrary.parliament.uk/research-briefings/cdp-2022-0005/"
+    },
+    "hmrc_reduced_rate_relief_2024_25": {
+      "value": 6500,
+      "description": "HMRC tax relief statistics (January 2026): \u00a36.5bn cost in 2024-25 of charging domestic fuel at 5% rather than the 20% standard rate. NOT directly comparable: the 15pp relief, gas + electricity combined, full year.",
+      "url": "https://www.gov.uk/government/statistics/tax-reliefs/tax-relief-statistics-january-2026"
+    },
+    "reform_uk_pledge": {
+      "value": 2500,
+      "description": "Reform UK pledge (March 2026), costed by Pantheon Macroeconomics: ~\u00a32.5bn/year to scrap VAT AND green levies on energy bills. NOT directly comparable: gas + electricity, VAT plus levies, full year.",
+      "url": "https://www.vatupdate.com/2026/03/17/reform-uk-pledges-to-scrap-vat-and-green-levies-on-energy-bills-to-cut-costs/"
+    }
+  },
+  "official_stats": {
+    "total_household_electricity_spend": {
+      "value_bn": 30.8,
+      "period_label": "2023",
+      "description": "Total UK household expenditure on electricity, \u00a3bn (Statista/ONS, 2023). The 5% VAT component of \u00a330.8bn is ~\u00a31.5bn full-year, ~\u00a3750m over six months \u2014 consistent with the \u00a3850m government claim at 2026 prices.",
+      "source": "https://www.statista.com/statistics/496756/household-expenditure-on-electricity-uk/"
+    },
+    "ons_family_spending_electricity": {
+      "value": 816.4,
+      "period_label": "FYE 2023",
+      "description": "ONS Family Spending: annualised electricity spending per household, \u00a3816.40 in FYE 2023 \u2014 compare the model's LCFS-imputed, NEED-calibrated mean for 2026.",
+      "source": "https://www.ons.gov.uk/aboutus/transparencyandgovernance/averagedualfuelhouseholdcosts"
+    },
+    "ons_households": {
+      "value": 28400000,
+      "description": "Common ONS estimate of UK household numbers (~28.4m). The Enhanced FRS calibrated household count is higher (~31.3m), reflecting the policyengine-uk-data calibration targets.",
+      "source": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/families/bulletins/familiesandhouseholds/latest"
+    },
+    "commentary": {
+      "description": "Sector responses: the End Fuel Poverty Coalition called the cut 'a positive statement of intent' that 'does not address the scale' of fuel poverty; National Energy Action called it 'the start we wanted to see'. Commentary cuts both ways: regressive in cash terms is disputed (the cut is flat in \u00a3 but progressive as a share of income), while excluding gas is criticised even as electricity-only relief improves heat-pump and EV running economics.",
+      "source": "https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living"
+    }
+  },
+  "methods": {
+    "gain_computation": "PolicyEngine UK's native vat variable applies a flat 2.5% reduced-rate share to total household consumption, so zeroing the reduced rate in the parameter tree would misattribute the cut across all reduced-rated spending. Instead, each household's gain is computed directly from its electricity spending in the Enhanced FRS dataset for 2026: observed spending includes VAT at 5%, so the full-year gain is spending \u00d7 5/105, and the six-month gain is half (uniform) or the winter share (57.5% of annual spending in October-March) as a sensitivity.",
+    "electricity_data": "electricity_consumption is a household input in the Enhanced FRS 2024-25 dataset, imputed from the Living Costs and Food Survey and calibrated to the National Energy Efficiency Data framework (NEED), uprated to the analysis year by policyengine-uk-data. It is populated for about 86% of households; households with no recorded electricity spending (e.g. bills in rent, prepayment gaps in the imputation) gain nothing in the model, so the winners share is below 100%.",
+    "pass_through": "The central case assumes 100% pass-through of the VAT cut to household bills: VAT is charged on the retail bill and the Ofgem price cap is set net of VAT, so the statutory incidence passes through mechanically for capped tariffs. 75% and 50% scenarios scale every household's gain proportionally, as a sensitivity to supplier or price-cap-timing absorption.",
+    "temporary_measure": "The zero rate runs 1 October 2026 to 31 March 2027. Costs and gains are reported full-year (for comparability) and for the six-month window: uniform halving as the headline, and a winter-weighted variant reflecting that domestic electricity demand is higher in October-March.",
+    "poverty": "Relative BHC poverty: people in households whose equivalised HBAI net income falls below 60% of the person-weighted median (50% for deep poverty). The line is held FIXED at its baseline value \u2014 a temporary six-month transfer should not move the poverty line itself. The six-month gain is added to household income and equivalised with each household's own baseline equivalisation factor.",
+    "no_behavioural_response": "No behavioural response is modelled: electricity demand is highly price-inelastic in the short run and the cut is 4.8% of the bill for six months, so any induced consumption (which would raise the cost slightly) is ignored. Inflation effects (the government claims about -0.10pp CPI) are also outside the model.",
+    "scope": "The model covers households only. The government's \u00a3850m costing also includes non-VAT-registered small businesses on domestic relief, charities and care homes, plus comparable funding for Northern Ireland, and is not OBR-certified \u2014 so the modelled household cost should sit below it."
+  },
+  "baseline": {
+    "n_households": 31253310.0,
+    "share_with_electricity_spend": 0.8658227324485779,
+    "mean_electricity_spend": 898.549066556516,
+    "total_electricity_spend_bn": 28.082632997200278,
+    "spend_by": {
+      "by_decile": [
+        {
+          "group": 1,
+          "mean_spend": 717.3149774492366
+        },
+        {
+          "group": 2,
+          "mean_spend": 828.0714115134839
+        },
+        {
+          "group": 3,
+          "mean_spend": 739.0720176271573
+        },
+        {
+          "group": 4,
+          "mean_spend": 953.548761932187
+        },
+        {
+          "group": 5,
+          "mean_spend": 1035.7485988199905
+        },
+        {
+          "group": 6,
+          "mean_spend": 943.8244513381982
+        },
+        {
+          "group": 7,
+          "mean_spend": 931.5526678827853
+        },
+        {
+          "group": 8,
+          "mean_spend": 1091.5195676911048
+        },
+        {
+          "group": 9,
+          "mean_spend": 866.299457377594
+        },
+        {
+          "group": 10,
+          "mean_spend": 985.9091152661838
+        }
+      ],
+      "by_quintile": [
+        {
+          "group": 1,
+          "mean_spend": 758.9380153959336
+        },
+        {
+          "group": 2,
+          "mean_spend": 852.2719839571505
+        },
+        {
+          "group": 3,
+          "mean_spend": 988.6997305605327
+        },
+        {
+          "group": 4,
+          "mean_spend": 1000.2695238092891
+        },
+        {
+          "group": 5,
+          "mean_spend": 926.0777581187667
+        }
+      ],
+      "by_quartile": [
+        {
+          "group": 1,
+          "mean_spend": 758.9380153959336
+        },
+        {
+          "group": 2,
+          "mean_spend": 911.2325683208055
+        },
+        {
+          "group": 3,
+          "mean_spend": 937.541128051033
+        },
+        {
+          "group": 4,
+          "mean_spend": 975.9373626963866
+        }
+      ],
+      "by_region": [
+        {
+          "group": "EAST_MIDLANDS",
+          "mean_spend": 1135.3948659585915
+        },
+        {
+          "group": "EAST_OF_ENGLAND",
+          "mean_spend": 794.5032935835569
+        },
+        {
+          "group": "LONDON",
+          "mean_spend": 599.1848025964213
+        },
+        {
+          "group": "NORTHERN_IRELAND",
+          "mean_spend": 877.2125517648286
+        },
+        {
+          "group": "NORTH_EAST",
+          "mean_spend": 1171.6951372028495
+        },
+        {
+          "group": "NORTH_WEST",
+          "mean_spend": 917.1983992193653
+        },
+        {
+          "group": "SCOTLAND",
+          "mean_spend": 916.6672402728217
+        },
+        {
+          "group": "SOUTH_EAST",
+          "mean_spend": 938.5356548400661
+        },
+        {
+          "group": "SOUTH_WEST",
+          "mean_spend": 798.082791186789
+        },
+        {
+          "group": "WALES",
+          "mean_spend": 1086.9993971931415
+        },
+        {
+          "group": "WEST_MIDLANDS",
+          "mean_spend": 786.3124280673386
+        },
+        {
+          "group": "YORKSHIRE",
+          "mean_spend": 1130.735078194147
+        }
+      ],
+      "by_tenure": [
+        {
+          "group": "OWNED_OUTRIGHT",
+          "mean_spend": 1083.4894505774666
+        },
+        {
+          "group": "OWNED_WITH_MORTGAGE",
+          "mean_spend": 908.5967649160623
+        },
+        {
+          "group": "RENT_FROM_COUNCIL",
+          "mean_spend": 613.0956098911229
+        },
+        {
+          "group": "RENT_FROM_HA",
+          "mean_spend": 636.3448854589225
+        },
+        {
+          "group": "RENT_PRIVATELY",
+          "mean_spend": 817.8931869864655
+        }
+      ],
+      "by_country": [
+        {
+          "group": "ENGLAND",
+          "mean_spend": 885.8746532170487
+        },
+        {
+          "group": "NORTHERN_IRELAND",
+          "mean_spend": 877.2125517648286
+        },
+        {
+          "group": "SCOTLAND",
+          "mean_spend": 916.6672402728217
+        },
+        {
+          "group": "WALES",
+          "mean_spend": 1086.9993971931415
+        }
+      ]
+    }
+  },
+  "reform": {
+    "cost": {
+      "full_year_bn": 1.337268237961918,
+      "six_month_uniform_m": 668.6341189809591,
+      "six_month_winter_m": 768.929236828103
+    },
+    "mean_gain": {
+      "full_year": 42.78805150436604,
+      "six_month_uniform": 21.39402575218302,
+      "six_month_winter": 24.603129615010474
+    },
+    "winners_share": 0.8658227324485779,
+    "by_decile": [
+      {
+        "group": 1,
+        "mean_gain": 17.07892875920338,
+        "pct_net_income": 0.0923467625211885,
+        "total_m": 62.72409510971127,
+        "n_households": 3672601.25,
+        "mean_gain_full_year": 34.15785751840676
+      },
+      {
+        "group": 2,
+        "mean_gain": 19.715986684281603,
+        "pct_net_income": 0.06631658202983409,
+        "total_m": 64.95195221296363,
+        "n_households": 3294380.0,
+        "mean_gain_full_year": 39.431973368563206
+      },
+      {
+        "group": 3,
+        "mean_gain": 17.596954972983998,
+        "pct_net_income": 0.046263550140532954,
+        "total_m": 52.603356165998626,
+        "n_households": 2989344.25,
+        "mean_gain_full_year": 35.193909945967995
+      },
+      {
+        "group": 4,
+        "mean_gain": 22.70354164594017,
+        "pct_net_income": 0.056275635176479884,
+        "total_m": 75.85897476902814,
+        "n_households": 3341283.75,
+        "mean_gain_full_year": 45.40708329188034
+      },
+      {
+        "group": 5,
+        "mean_gain": 24.660680505591834,
+        "pct_net_income": 0.049057764380325115,
+        "total_m": 73.92489038970379,
+        "n_households": 2997682.5,
+        "mean_gain_full_year": 49.32136101118367
+      },
+      {
+        "group": 6,
+        "mean_gain": 22.472011568854818,
+        "pct_net_income": 0.04196328832917675,
+        "total_m": 70.62680762950798,
+        "n_households": 3142878.75,
+        "mean_gain_full_year": 44.944023137709635
+      },
+      {
+        "group": 7,
+        "mean_gain": 22.179825770053938,
+        "pct_net_income": 0.03673872893320749,
+        "total_m": 73.27758639006247,
+        "n_households": 3303794.5,
+        "mean_gain_full_year": 44.359651540107876
+      },
+      {
+        "group": 8,
+        "mean_gain": 25.988559241247124,
+        "pct_net_income": 0.032287593321058454,
+        "total_m": 64.65847635843376,
+        "n_households": 2487959.25,
+        "mean_gain_full_year": 51.97711848249425
+      },
+      {
+        "group": 9,
+        "mean_gain": 20.626176600722918,
+        "pct_net_income": 0.02404705499599198,
+        "total_m": 59.49877436377204,
+        "n_households": 2884624.5,
+        "mean_gain_full_year": 41.252353201445835
+      },
+      {
+        "group": 10,
+        "mean_gain": 23.474025575301653,
+        "pct_net_income": 0.01779726724711703,
+        "total_m": 67.65370273072011,
+        "n_households": 2882066.5,
+        "mean_gain_full_year": 46.948051150603305
+      }
+    ],
+    "by_equiv_decile": [
+      {
+        "group": 1,
+        "mean_gain": 16.68951734385796,
+        "pct_net_income": 0.08991992887319189,
+        "total_m": 65.57760312418343,
+        "n_households": 3929269.0
+      },
+      {
+        "group": 2,
+        "mean_gain": 19.71642724367723,
+        "pct_net_income": 0.06631830920685543,
+        "total_m": 64.95328528446194,
+        "n_households": 3294374.0
+      },
+      {
+        "group": 3,
+        "mean_gain": 17.59708510863752,
+        "pct_net_income": 0.046263815507129054,
+        "total_m": 52.604017941085374,
+        "n_households": 2989359.75
+      },
+      {
+        "group": 4,
+        "mean_gain": 22.70341933919262,
+        "pct_net_income": 0.056275375259069026,
+        "total_m": 75.85897476902814,
+        "n_households": 3341301.75
+      },
+      {
+        "group": 5,
+        "mean_gain": 24.660680505591834,
+        "pct_net_income": 0.049057764380325115,
+        "total_m": 73.92489038970379,
+        "n_households": 2997682.5
+      },
+      {
+        "group": 6,
+        "mean_gain": 22.472011568854818,
+        "pct_net_income": 0.04196328832917675,
+        "total_m": 70.62680762950798,
+        "n_households": 3142878.75
+      },
+      {
+        "group": 7,
+        "mean_gain": 22.180089905059585,
+        "pct_net_income": 0.036739981532686525,
+        "total_m": 73.27732785325622,
+        "n_households": 3303743.5
+      },
+      {
+        "group": 8,
+        "mean_gain": 25.98813304417587,
+        "pct_net_income": 0.03228651261407825,
+        "total_m": 64.65873489524,
+        "n_households": 2488010.0
+      },
+      {
+        "group": 9,
+        "mean_gain": 20.62630430784873,
+        "pct_net_income": 0.024047697796264755,
+        "total_m": 59.497776258215595,
+        "n_households": 2884558.25
+      },
+      {
+        "group": 10,
+        "mean_gain": 23.473834334915747,
+        "pct_net_income": 0.01779702662182428,
+        "total_m": 67.65470083627656,
+        "n_households": 2882132.5
+      }
+    ],
+    "by_quintile": [
+      {
+        "group": 1,
+        "mean_gain": 18.06995159833751,
+        "pct_net_income": 0.07639166599760673,
+        "total_m": 130.53088840864535,
+        "n_households": 7223643.5
+      },
+      {
+        "group": 2,
+        "mean_gain": 20.292191062515904,
+        "pct_net_income": 0.05169452515924454,
+        "total_m": 128.46299271011353,
+        "n_households": 6330661.5
+      },
+      {
+        "group": 3,
+        "mean_gain": 23.54046906283925,
+        "pct_net_income": 0.04531463296566281,
+        "total_m": 144.55169801921176,
+        "n_households": 6140561.5
+      },
+      {
+        "group": 4,
+        "mean_gain": 23.81593948025007,
+        "pct_net_income": 0.034508695687884214,
+        "total_m": 137.93606274849625,
+        "n_households": 5791754.0
+      },
+      {
+        "group": 5,
+        "mean_gain": 22.049471372616953,
+        "pct_net_income": 0.020261347777882285,
+        "total_m": 127.15247709449216,
+        "n_households": 5766690.5
+      }
+    ],
+    "by_quartile": [
+      {
+        "group": 1,
+        "mean_gain": 18.06995159833751,
+        "pct_net_income": 0.07639166599760673,
+        "total_m": 130.53088840864535,
+        "n_households": 7223643.5
+      },
+      {
+        "group": 2,
+        "mean_gain": 21.69601411566912,
+        "pct_net_income": 0.05069919228727926,
+        "total_m": 202.38788309981734,
+        "n_households": 9328344.0
+      },
+      {
+        "group": 3,
+        "mean_gain": 22.322405929858814,
+        "pct_net_income": 0.039130474310754344,
+        "total_m": 143.90413548276422,
+        "n_households": 6446623.0
+      },
+      {
+        "group": 4,
+        "mean_gain": 23.23660323853428,
+        "pct_net_income": 0.02317043836085438,
+        "total_m": 191.81121198973216,
+        "n_households": 8254701.0
+      }
+    ],
+    "by_region": [
+      {
+        "group": "EAST_MIDLANDS",
+        "mean_gain": 27.03321310740878,
+        "pct_net_income": 0.04998691086449717,
+        "total_m": 61.570014902131184,
+        "n_households": 2277569.25
+      },
+      {
+        "group": "EAST_OF_ENGLAND",
+        "mean_gain": 18.916743967930582,
+        "pct_net_income": 0.030287962075643073,
+        "total_m": 55.10150997896481,
+        "n_households": 2912843.25
+      },
+      {
+        "group": "LONDON",
+        "mean_gain": 14.266304209987593,
+        "pct_net_income": 0.019986486707413712,
+        "total_m": 56.2385059104379,
+        "n_households": 3942051.5
+      },
+      {
+        "group": "NORTHERN_IRELAND",
+        "mean_gain": 20.886012327963545,
+        "pct_net_income": 0.03687271318381672,
+        "total_m": 16.111330234583637,
+        "n_households": 771393.3125
+      },
+      {
+        "group": "NORTH_EAST",
+        "mean_gain": 27.897502441146006,
+        "pct_net_income": 0.05509118033768511,
+        "total_m": 36.483841075923394,
+        "n_households": 1307781.625
+      },
+      {
+        "group": "NORTH_WEST",
+        "mean_gain": 21.838059282873804,
+        "pct_net_income": 0.04198389498701838,
+        "total_m": 76.61331688399382,
+        "n_households": 3508247.5
+      },
+      {
+        "group": "SCOTLAND",
+        "mean_gain": 21.825409920312207,
+        "pct_net_income": 0.04315650221788858,
+        "total_m": 59.047287907637134,
+        "n_households": 2705437.75
+      },
+      {
+        "group": "SOUTH_EAST",
+        "mean_gain": 22.34608654357921,
+        "pct_net_income": 0.03951173244583177,
+        "total_m": 94.76023359845186,
+        "n_households": 4240574.0
+      },
+      {
+        "group": "SOUTH_WEST",
+        "mean_gain": 19.001971529255485,
+        "pct_net_income": 0.035347481238224336,
+        "total_m": 52.139709199825184,
+        "n_households": 2743910.5
+      },
+      {
+        "group": "WALES",
+        "mean_gain": 25.88093823948736,
+        "pct_net_income": 0.04999530012810187,
+        "total_m": 41.11253682758534,
+        "n_households": 1588525.75
+      },
+      {
+        "group": "WEST_MIDLANDS",
+        "mean_gain": 18.721725584330294,
+        "pct_net_income": 0.035396249376711424,
+        "total_m": 50.27141840437624,
+        "n_households": 2685191.5
+      },
+      {
+        "group": "YORKSHIRE",
+        "mean_gain": 26.922265578150597,
+        "pct_net_income": 0.05000643065163132,
+        "total_m": 69.18441405704854,
+        "n_households": 2569784.25
+      }
+    ],
+    "by_tenure": [
+      {
+        "group": "OWNED_OUTRIGHT",
+        "mean_gain": 25.797369659877287,
+        "pct_net_income": 0.047018208129131135,
+        "total_m": 276.4098126235738,
+        "n_households": 10714651.0
+      },
+      {
+        "group": "OWNED_WITH_MORTGAGE",
+        "mean_gain": 21.633256641657734,
+        "pct_net_income": 0.029613018236535945,
+        "total_m": 177.57229294160413,
+        "n_households": 8208301.5
+      },
+      {
+        "group": "RENT_FROM_COUNCIL",
+        "mean_gain": 14.597514770265729,
+        "pct_net_income": 0.03696870811405511,
+        "total_m": 43.25974961919726,
+        "n_households": 2963501.0
+      },
+      {
+        "group": "RENT_FROM_HA",
+        "mean_gain": 15.151068613079186,
+        "pct_net_income": 0.03812710862318939,
+        "total_m": 38.60722957632211,
+        "n_households": 2548152.25
+      },
+      {
+        "group": "RENT_PRIVATELY",
+        "mean_gain": 19.473645502640817,
+        "pct_net_income": 0.03690024281871981,
+        "total_m": 132.7850342202617,
+        "n_households": 6818704.5
+      }
+    ],
+    "by_country": [
+      {
+        "group": "ENGLAND",
+        "mean_gain": 21.092251873767964,
+        "pct_net_income": 0.03675320256018369,
+        "total_m": 552.3629640111529,
+        "n_households": 26187956.0
+      },
+      {
+        "group": "NORTHERN_IRELAND",
+        "mean_gain": 20.886012327963545,
+        "pct_net_income": 0.03687271318381672,
+        "total_m": 16.111330234583637,
+        "n_households": 771393.3125
+      },
+      {
+        "group": "SCOTLAND",
+        "mean_gain": 21.825409920312207,
+        "pct_net_income": 0.04315650221788858,
+        "total_m": 59.047287907637134,
+        "n_households": 2705437.75
+      },
+      {
+        "group": "WALES",
+        "mean_gain": 25.88093823948736,
+        "pct_net_income": 0.04999530012810187,
+        "total_m": 41.11253682758534,
+        "n_households": 1588525.75
+      }
+    ],
+    "pass_through": [
+      {
+        "rate": 1.0,
+        "cost_6m_m": 668.6341189809591,
+        "cost_6m_winter_m": 768.929236828103,
+        "mean_gain_6m": 21.39402575218302,
+        "description": "Central case: full pass-through of the VAT cut to household bills. Domestic energy VAT is charged on the retail bill and most tariffs sit at the Ofgem price cap, which is set net of VAT, so the statutory incidence passes through mechanically.",
+        "url": "https://www.ofgem.gov.uk/energy-price-cap"
+      },
+      {
+        "rate": 0.75,
+        "cost_6m_m": 501.4755892357193,
+        "cost_6m_winter_m": 576.6969276210772,
+        "mean_gain_6m": 16.045519314137266,
+        "description": "Sensitivity: partial pass-through, if suppliers or the price-cap mechanics absorb a quarter of the cut (e.g. through tariff resets timed against the window).",
+        "url": "https://uk.finance.yahoo.com/news/energy-vat-cut-does-not-075635288.html"
+      },
+      {
+        "rate": 0.5,
+        "cost_6m_m": 334.31705949047955,
+        "cost_6m_winter_m": 384.4646184140515,
+        "mean_gain_6m": 10.69701287609151,
+        "description": "Sensitivity: half pass-through, a lower bound in the consumption-tax incidence literature for temporary cuts.",
+        "url": "https://uk.finance.yahoo.com/news/energy-vat-cut-does-not-075635288.html"
+      }
+    ]
+  },
+  "poverty": {
+    "bhc_relative": {
+      "line": 25983.794531249998,
+      "baseline_rate": 0.1964428445725265,
+      "reformed_rate": 0.19623645279861457,
+      "people_out_of_poverty": 14330.212071418762
+    },
+    "bhc_deep": {
+      "line": 21653.162109375,
+      "baseline_rate": 0.1255977440556803,
+      "reformed_rate": 0.1255025241865969,
+      "people_out_of_poverty": 6611.314450740814
+    }
+  },
+  "inequality": {
+    "baseline_gini": 0.3142205170727683,
+    "reformed_gini": 0.31410880785366646
+  }
+}
