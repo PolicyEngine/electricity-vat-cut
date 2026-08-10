@@ -194,6 +194,7 @@ def run(
     optional = {}
     for column, key in OPTIONAL_BREAKDOWNS.items():
         optional[key] = group_table(hh, "gain_6m", column) if column in hh.columns else None
+
     def spend_table(group_col) -> list[dict]:
         groups = (
             hh[group_col] if isinstance(group_col, str) else pd.Series(group_col, index=hh.index)
