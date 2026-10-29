@@ -1,6 +1,6 @@
 # Temporary VAT cut on domestic electricity (5% to 0%)
 
-**Live dashboard: [electricity-vat-cut.vercel.app/uk/electricity-vat-cut](https://electricity-vat-cut.vercel.app/uk/electricity-vat-cut)**
+**Live dashboard: [policyengine.org/uk/electricity-vat-cut](https://policyengine.org/uk/electricity-vat-cut)**
 
 Data pipeline and dashboard estimating the fiscal cost and distributional
 impact of the temporary VAT cut on domestic electricity — from the 5%
